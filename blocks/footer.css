@@ -3,7 +3,7 @@
     background-color: #FCF5E5;
     align-items: center;
     margin: 20px auto;
-    
+    background: cover;
 
 }
 
@@ -14,5 +14,4 @@
     color: #6f6f6f;
     max-width: 1280px;
     margin: 0 auto;
-    overflow: hidden;
 }
