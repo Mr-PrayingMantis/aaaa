@@ -2,7 +2,8 @@
     display: flex;
     background-color: #FCF5E5;
     align-items: center;
-    margin: 20px auto;
+    margin: 20px auto auto;
+    padding-bottom: 20px;
     background: cover;
 
 }
