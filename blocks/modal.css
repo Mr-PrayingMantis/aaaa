@@ -25,7 +25,7 @@
     position: relative;
 }
 
-.model__close-btn{
+.modal__close-btn{
     position: absolute;
     top: 32px;
     right: 58px;
