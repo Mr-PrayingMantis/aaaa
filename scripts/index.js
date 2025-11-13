@@ -15,3 +15,11 @@ editProfileBtn.addEventListener("click", function () {
 editProfileCloseBtn.addEventListener("click", function () {
     editProfileModal.classList.remove("modal_is-open");
 });
+
+newPostBtn.addEventListener("click", function () {
+    newPostModal.classList.add("modal_is-open");
+});
+
+newPostCloseBtn.addEventListener("click", function () {
+    newPostModal.classList.remove("modal_is-open");
+});
