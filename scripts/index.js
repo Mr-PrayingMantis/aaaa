@@ -45,7 +45,7 @@ function handleEditProfileSubmit(evt) {
 
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
-const addnewPostForm = newPostModal.querySelector(".modal__form");
+
 const captionInput = newPostForm.querySelector("#caption-input"); 
 const cardImageInput = newPostForm.querySelector("#card-image-input"); 
 
@@ -53,6 +53,6 @@ function handleAddCardSubmit(evt) {
   evt.preventDefault(); 
  console.log(captionInput.value);
  console.log(cardImageInput.value);
-  newPostModal.classList.remove("modal_is-open");
+  evt.target.reset();
 }
-addnewPostForm.addEventListener('submit', handleAddCardSubmit);
+newPostForm .addEventListener('submit', handleAddCardSubmit);
