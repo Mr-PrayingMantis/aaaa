@@ -1,3 +1,31 @@
+const initialCards = [
+    {
+        name: "Val Thorens",
+        link:"https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
+    },
+    {
+        name:"Restaurant terrace",
+        link:"./images/spots-images/2-photo-by-ceiline-from-pexels.jpg"
+    },
+    {
+        name:"An outdoor cafe",
+        link:"./images/spots-images/3-photo-by-tubanur-dogan-from-pexels.jpg",
+    },
+    {
+        name:"A very long bridge, over the forest communist",
+        link:"./images/spots-images/4-photo-by-maurice-laschet-from-pexels.jpg",
+    },
+
+    {
+        name:"Tunnel with morning light",
+        link:"./images/spots-images/5-photo-by-van-anh-nguyen-from-pexels.jpg",
+    },
+
+    {
+        name:"Mountain house",
+        link:"./images/spots-images/6-photo-by-moritz-feldmann-from-pexels.jpg",
+    },
+    ];
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
@@ -5,7 +33,6 @@ const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
 const editProfileForm = editProfileModal.querySelector(".modal__form");
 const editProfileNameInput = editProfileModal.querySelector("#profile-name-input");
 
-//const addCardFormElement = 
 
 const editProfileDescriptionInput = editProfileModal.querySelector("#profile-description-input");
 
@@ -56,3 +83,7 @@ function handleAddCardSubmit(evt) {
   evt.target.reset();
 }
 newPostForm .addEventListener('submit', handleAddCardSubmit);
+initialCards.forEach(function (item) {
+    console.log(item.name);
+    console.log(item.link);
+});
