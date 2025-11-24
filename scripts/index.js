@@ -1,3 +1,4 @@
+//index.js
 const initialCards = [
     {
         name: "Val Thorens",
@@ -44,30 +45,41 @@ const newPostForm = newPostModal.querySelector(".modal__form");
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
 
+function openModal(modal) {
+  modal.classList.add("modal_is-open");
+}
+
+function closeModal(modal) {
+  modal.classList.remove("modal_is-open");
+}
 
 editProfileBtn.addEventListener("click", function () {
     editProfileNameInput.value = profileNameEl.textContent;
     editProfileDescriptionInput.value = profileDescriptionEl.textContent;
-    editProfileModal.classList.add("modal_is-open");
+    //editProfileModal.classList.add("modal_is-open");
+    openModal(editProfileModal);
 });
 
 editProfileCloseBtn.addEventListener("click", function () {
-    editProfileModal.classList.remove("modal_is-open");
+    closeModal(editProfileModal);
 });
 
 newPostBtn.addEventListener("click", function () {
-    newPostModal.classList.add("modal_is-open");
+    //newPostModal.classList.add("modal_is-open");
+    openModal(newPostModal);
 });
 
 newPostCloseBtn.addEventListener("click", function () {
-    newPostModal.classList.remove("modal_is-open");
+    //newPostModal.classList.remove("modal_is-open");
+    closeModal(newPostModal);
 });
 
 function handleEditProfileSubmit(evt) {
     evt.preventDefault();
     profileNameEl.textContent = editProfileNameInput.value;
     profileDescriptionEl.textContent = editProfileDescriptionInput.value;
-    editProfileModal.classList.remove("modal_is-open");
+    //editProfileModal.classList.remove("modal_is-open");
+    closeModal(editProfileModal);
 };
 
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
