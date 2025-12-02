@@ -101,8 +101,6 @@ const cardImageInput = newPostForm.querySelector("#card-image-input");
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault(); 
- /*console.log(captionInput.value);
- console.log(cardImageInput.value);*/
  const cardElemant = getCardElemant({
     name: captionInput.value,
     link: cardImageInput.value,
