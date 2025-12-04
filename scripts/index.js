@@ -1,4 +1,3 @@
-//index.js
 const initialCards = [
     {
         name: "Golden Gate Bridge",
@@ -50,9 +49,14 @@ const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
 
 const cardTemplate = document.querySelector("#card-template").content.querySelector(".card");
-const cardsList = document.querySelector(".cards__list")
+const cardsList = document.querySelector(".cards__list");
 
-function getCardElemant(data) {
+const previewModal = document.querySelector("#preview-modal");
+const previewModalCloseBtn = previewModal.querySelector(".modal__close-btn");
+const previewImageEl = previewModal.querySelector(".modal__image");
+const previewCaption = previewModal.querySelector(".modal__caption");
+
+function cardElemantClaim(data) {
     const cardElemant = cardTemplate.cloneNode(true);
     const cardTitleEl = cardElemant.querySelector(".card__title");
     const cardImageEl = cardElemant.querySelector(".card__image");
@@ -64,16 +68,26 @@ function getCardElemant(data) {
     const cardLikeButton = cardElemant.querySelector(".card__like-button");
     cardLikeButton.addEventListener("click", () =>{
         cardLikeButton.classList.toggle("card__like-button_active");
-    })
+    });
 
     const cardDeleteButton = cardElemant.querySelector(".card__delete-button");
     cardDeleteButton.addEventListener("click", () => {
         cardElemant.remove();
-        cardElemant = null;
-    })
+    });
+    cardImageEl.addEventListener("click", () => {
+        previewImageEl.src = data.link;
+        previewImageEl.alt = data.name;
+        previewCaption.textContent = data.name;
+        openModal(previewModal);
+    });
+    
 
     return cardElemant;
 }
+
+previewModalCloseBtn.addEventListener("click", function () {
+    closeModal(previewModal);
+});
 
 function openModal(modal) {
   modal.classList.add("modal_is-open");
@@ -116,7 +130,7 @@ const cardImageInput = newPostForm.querySelector("#card-image-input");
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault(); 
- const cardElemant = getCardElemant({
+ const cardElemant = cardElemantClaim({
     name: captionInput.value,
     link: cardImageInput.value,
  });
@@ -126,6 +140,6 @@ function handleAddCardSubmit(evt) {
 }
 newPostForm .addEventListener('submit', handleAddCardSubmit);
 initialCards.forEach(function (item) {
-    const cardElemant = getCardElemant(item);
+    const cardElemant = cardElemantClaim(item);
     cardsList.append(cardElemant);
 }); 
