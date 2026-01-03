@@ -70,7 +70,7 @@
         <div class="modal__container">
           <button type="button" class="modal__close-btn"></button>
           <h2 class="modal__title">Edit Profile</h2>
-          <form class="modal__form">
+          <form class="modal__form" novalidate>
             <label for="profile-name-input" class="modal__label">
               Name
               <input 
@@ -79,8 +79,9 @@
               minlength="2"
               maxlength="40" 
               class="modal__input"
+              required
               placeholder="Type your name">
-              <span id="profile-name-input" class="modal__error"></span>
+              <span id="profile-name-input-error" class="modal__error"></span>
             </label>
              <label for="profile-description-input" class="modal__label">
               Description
@@ -90,6 +91,7 @@
               minlength="2"
               maxlength="200" 
               class="modal__input"
+              required
               placeholder="Describe yourself">
               <span id ="card-image-input-error" class="modal__error"></span>
             </label>
@@ -101,7 +103,7 @@
         <div class="modal__container">
           <button type="button" class="modal__close-btn"></button>
           <h2 class="modal__title">New Post</h2>
-          <form class="modal__form" id="card-form">
+          <form class="modal__form" id="card-form" novalidate>
             <label for="card-image-input" class="modal__label">
               Image link
               <input 
@@ -120,7 +122,9 @@
               minlength="2"
               maxlength="30"
               class="modal__input"
+              required
               placeholder="Type your Caption">
+              
               <span id="caption-input-error"class="modal__error"></span>
             </label>
             <button type="submit" class="modal__submit-btn">Save</button>
