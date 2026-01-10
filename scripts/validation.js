@@ -10,7 +10,7 @@ const config = {
 const showInputError = (formEl, inputEl, errorMsg) => {
   const errorMsgEl = formEl.querySelector(`#${inputEl.id}-error`);
   errorMsgEl.textContent = errorMsg;
-  inputEl.classList.add("modal__input_state_error");
+  inputEl.classList.add(config.inputErrorClass);
 };
 
 const hideInputError = (formEl, inputEl) => {
@@ -34,7 +34,7 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
-const toggleButtonState = (inputList, buttonEl) => {
+const toggleButtonState = (inputList, buttonEl, config) => {
   if (hasInvalidInput(inputList)) {
     disableButton(buttonEl);
   } else {
@@ -43,16 +43,17 @@ const toggleButtonState = (inputList, buttonEl) => {
   }
 };
 const disableButton = (buttonEl, config) => {
-  debugger
   buttonEl.disabled = true;
     buttonEl.classList.add("modal__submit-btn-disable");
 };
 
 const resetValidation = (formEl, inputList) => {
   inputList.forEach((input) => {
+    formEl.querySelector(config.submitButtonSelector)
     hideInputError(formEl, input)
   })
-  disableButton()
+  disableButton(buttonEl, config)
+  
 };
 
 const setEventListerners =(formEl, config) => {

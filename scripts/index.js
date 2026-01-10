@@ -56,7 +56,7 @@ const previewModalCloseBtn = previewModal.querySelector(".modal__close-btn");
 const previewImageEl = previewModal.querySelector(".modal__image");
 const previewCaption = previewModal.querySelector(".modal__caption");
 
-function cardElemantClaim(data) {
+function getCardElement(data) {
     const cardElemant = cardTemplate.cloneNode(true);
     const cardTitleEl = cardElemant.querySelector(".card__title");
     const cardImageEl = cardElemant.querySelector(".card__image");
@@ -101,7 +101,7 @@ editProfileBtn.addEventListener("click", function () {
     editProfileNameInput.value = profileNameEl.textContent;
     editProfileDescriptionInput.value = profileDescriptionEl.textContent;
     openModal(editProfileModal);
-    resetValidation(editProfileForm, [editProfileNameInput, editProfileDescriptionInput]);
+    resetValidation(form, submitButton, config);
     
 });
 
@@ -122,8 +122,7 @@ function handleEditProfileSubmit(evt) {
     profileNameEl.textContent = editProfileNameInput.value;
     profileDescriptionEl.textContent = editProfileDescriptionInput.value;
     closeModal(editProfileModal);
-    disableButton(editProfileNameInput, config);
-    disableButton(editProfileDescriptionInput, config);
+    disableButton(modal__submit-btn, config);
 };
 
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
@@ -134,7 +133,7 @@ const cardImageInput = newPostForm.querySelector("#card-image-input");
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault(); 
- const cardElemant = cardElemantClaim({
+ const cardElemant = getCardElement({
     name: captionInput.value,
     link: cardImageInput.value,
  });
@@ -143,8 +142,8 @@ function handleAddCardSubmit(evt) {
   disableButton(newPostFormSubmit, config);
   closeModal(newPostModal);
 }
-newPostForm .addEventListener('submit', handleAddCardSubmit);
+newPostForm.addEventListener('submit', handleAddCardSubmit);
 initialCards.forEach(function (item) {
-    const cardElemant = cardElemantClaim(item);
+    const cardElemant = getCardElement(item);
     cardsList.append(cardElemant);
 }); 
