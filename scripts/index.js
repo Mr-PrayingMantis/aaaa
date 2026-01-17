@@ -89,19 +89,39 @@ previewModalCloseBtn.addEventListener("click", function () {
     closeModal(previewModal);
 });
 
+function handleEscapeKey(evt) {
+  if (evt.key === "Escape") {
+    const openedModal = document.querySelector(".modal_is-open");
+    if (openedModal) {
+      closeModal(openedModal);
+    }
+  }
+}
+
+function handleOverlayClick(evt) {
+  if (evt.target.classList.contains("modal")) {
+    closeModal(evt.target);
+  }
+}
+
 function openModal(modal) {
   modal.classList.add("modal_is-open");
+  document.addEventListener("keydown", handleEscapeKey);
+  modal.addEventListener("mousedown", handleOverlayClick);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_is-open");
+  document.removeEventListener("keydown", handleEscapeKey);
+  modal.removeEventListener("mousedown", handleOverlayClick);
 }
 
 editProfileBtn.addEventListener("click", function () {
     editProfileNameInput.value = profileNameEl.textContent;
     editProfileDescriptionInput.value = profileDescriptionEl.textContent;
     openModal(editProfileModal);
-    resetValidation(form, submitButton, config);
+    const editProfileInputs = Array.from(editProfileForm.querySelectorAll(".modal__input"));
+resetValidation(editProfileForm, editProfileInputs);
     
 });
 
@@ -122,7 +142,8 @@ function handleEditProfileSubmit(evt) {
     profileNameEl.textContent = editProfileNameInput.value;
     profileDescriptionEl.textContent = editProfileDescriptionInput.value;
     closeModal(editProfileModal);
-    disableButton(modal__submit-btn, config);
+    const editProfileSubmitBtn = editProfileForm.querySelector(".modal__submit-btn");
+disableButton(editProfileSubmitBtn, config);
 };
 
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
