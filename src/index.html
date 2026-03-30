@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -9,7 +9,7 @@
     />
     <meta name="author" content="Giacomo" />
     <meta name="keywords" content="image stuff" />
-    
+
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     <title>White Palace</title>
   </head>
@@ -41,7 +41,8 @@
             </button>
           </div>
           <button type="button" class="profile__new-post-btn">
-            <img src="./images/spots-images/plus.svg.svg" alt="Plus icon" /> New Post
+            <img src="./images/spots-images/plus.svg.svg" alt="Plus icon" /> New
+            Post
           </button>
         </section>
         <section class="cards page__section">
@@ -50,16 +51,13 @@
             <template id="card-template">
               <li class="card">
                 <button class="card__delete-button" type="button"></button>
-              <img
-                class="card__image"
-                
-              />
-              <div class="card__content">
-                <h2 class="card__title"></h2>
-                <button type="button" class="card__like-button"></button>
-              </div>
-            </li>
-          </template>            
+                <img class="card__image" />
+                <div class="card__content">
+                  <h2 class="card__title"></h2>
+                  <button type="button" class="card__like-button"></button>
+                </div>
+              </li>
+            </template>
           </ul>
         </section>
       </main>
@@ -73,76 +71,82 @@
           <form class="modal__form" novalidate>
             <label for="profile-name-input" class="modal__label">
               Name
-              <input 
-              id="profile-name-input" 
-              type="text"
-              minlength="2"
-              maxlength="40" 
-              class="modal__input"
-              required
-              placeholder="Type your name">
+              <input
+                id="profile-name-input"
+                type="text"
+                minlength="2"
+                maxlength="40"
+                class="modal__input"
+                required
+                placeholder="Type your name"
+              />
               <span id="profile-name-input-error" class="modal__error"></span>
             </label>
-             <label for="profile-description-input" class="modal__label">
+            <label for="profile-description-input" class="modal__label">
               Description
-              <input 
-              id="profile-description-input" 
-              type="text"
-              minlength="2"
-              maxlength="200" 
-              class="modal__input"
-              required
-              placeholder="Describe yourself">
-              <span id ="profile-description-input-error" class="modal__error"></span>
+              <input
+                id="profile-description-input"
+                type="text"
+                minlength="2"
+                maxlength="200"
+                class="modal__input"
+                required
+                placeholder="Describe yourself"
+              />
+              <span
+                id="profile-description-input-error"
+                class="modal__error"
+              ></span>
             </label>
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
         </div>
-       </div>
-       <div class="modal" id="new-post-modal">
+      </div>
+      <div class="modal" id="new-post-modal">
         <div class="modal__container">
           <button type="button" class="modal__close-btn"></button>
           <h2 class="modal__title">New Post</h2>
           <form class="modal__form" id="card-form" novalidate>
             <label for="card-image-input" class="modal__label">
               Image link
-              <input 
-              id="card-image-input" 
-              type="url" 
-              class="modal__input"
-              required 
-              placeholder="Place a link to the picture">
+              <input
+                id="card-image-input"
+                type="url"
+                class="modal__input"
+                required
+                placeholder="Place a link to the picture"
+              />
               <span id="card-image-input-error" class="modal__error"></span>
             </label>
-             <label for="caption-input" class="modal__label">
+            <label for="caption-input" class="modal__label">
               Caption
-              <input 
-              id="caption-input" 
-              type="text" 
-              minlength="2"
-              maxlength="30"
-              class="modal__input"
-              required
-              placeholder="Type your Caption">
-              
-              <span id="caption-input-error"class="modal__error"></span>
+              <input
+                id="caption-input"
+                type="text"
+                minlength="2"
+                maxlength="30"
+                class="modal__input"
+                required
+                placeholder="Type your Caption"
+              />
+
+              <span id="caption-input-error" class="modal__error"></span>
             </label>
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
         </div>
       </div>
     </div>
-    
-<div class="modal modal_type_preview" id="preview-modal">
-        <div class="modal__image-container">
-          <button type="button" class="modal__close-btn modal__close-btn_type_preview"></button>
-          <img src="#" alt="" class="modal__image">
-          <p class="modal__caption"></p>
-        </div>
-      </div>
 
-    
-    
-    
+    <div class="modal modal_type_preview" id="preview-modal">
+      <div class="modal__image-container">
+        <button
+          type="button"
+          class="modal__close-btn modal__close-btn_type_preview"
+        ></button>
+        <img src="<%=require('./src/spots-images')%>" alt="" class="modal__image" />
+        <p class="modal__caption"></p>
+      </div>
+    </div>
   </body>
 </html>
