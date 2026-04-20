@@ -6,6 +6,7 @@ import {
   resetValidation,
   disableButton,
 } from "./validation.js";
+import Api from "../scripts/Api.js"
 
 const initialCards = [
   {
@@ -44,6 +45,18 @@ const initialCards = [
   },
 
 ];
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "57050730-15bb-4539-9434-9c656456e2a7",
+    "Content-Type": "application/json"
+  }
+});
+
+api.getInitialCards().then((cards) => {
+  console.log(cards);
+});
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
