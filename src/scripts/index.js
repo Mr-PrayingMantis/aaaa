@@ -54,7 +54,7 @@ const api = new Api({
   },
 }); 
 
-api.getInitialCards().then(([cards, ]) => {
+api.getInitialCards().then(([cards, users]) => {
   cards.forEach((item) => {
     const cardElemant = getCardElement(item);
     cardsList.append(cardElemant);
