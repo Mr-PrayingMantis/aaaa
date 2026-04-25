@@ -54,15 +54,32 @@ const api = new Api({
   },
 }); 
 
-api.getInitialCards().then(([cards, users]) => {
+api.getAppInfo().then((cards, users) => {  
   cards.forEach((item) => {
     const cardElemant = getCardElement(item);
     cardsList.append(cardElemant);
   });
-}).catch((err) => {
+
+  users.forEach((value) => {
+    const profileNameEl = getprofileName(value);
+    const profileDescriptionEl = profileDescriptionEl(value);
+    profileNameEl.append(profileNameEl);
+  });
+
+
+})
+.catch((err) => {
     console.error(err);
   })
-
+/*editProfileBtn.addEventListener("click", function () {
+  editProfileNameInput.valueprofileNameEl.textContent;
+  editProfileDescriptionInput.value = profileDescriptionEl.textContent;
+  openModal(editProfileModal);
+  const editProfileInputs = Array.from(
+    editProfileForm.querySelectorAll(".modal__input"),
+    profileNameEl
+    profileDescriptionEl
+  );*/
 
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
