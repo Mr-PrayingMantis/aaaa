@@ -54,19 +54,13 @@ const api = new Api({
   },
 }); 
 
-api.getAppInfo().then((cards, users) => {  
+api.getAppInfo().then((cards, userInfo) => {
+    profileNameEl.textContent = userInfo.name;
+    profileDescriptionEl.textContent = userInfo.about;
   cards.forEach((item) => {
     const cardElemant = getCardElement(item);
     cardsList.append(cardElemant);
   });
-
-  users.forEach((value) => {
-    const profileNameEl = getprofileName(value);
-    const profileDescriptionEl = profileDescriptionEl(value);
-    profileNameEl.append(profileNameEl);
-  });
-
-
 })
 .catch((err) => {
     console.error(err);
