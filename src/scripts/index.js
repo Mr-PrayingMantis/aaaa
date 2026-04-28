@@ -8,44 +8,7 @@ import {
 } from "./validation.js";
 import Api from "../utils/Api.js"
 
-/*const initialCards = [
-  {
-    name: "Golden Gate Bridge",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
-  },
 
-  {
-    name: "Val Thorens",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-
-  {
-    name: "Restaurant terrace",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
-  },
-
-  {
-    name: "An outdoor cafe",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
-  },
-
-  {
-    name: "A very long bridge, over the forest and through the trees",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
-  },
-
-  {
-    name: "Tunnel with morning light",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
-  },
-
-  {
-    name: "Mountain house",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-
-];
-*/
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
@@ -54,7 +17,7 @@ const api = new Api({
   },
 }); 
 
-api.getAppInfo().then((cards, userInfo) => {
+api.getAppInfo().then(([cards, userInfo]) => {
     profileNameEl.textContent = userInfo.name;
     profileDescriptionEl.textContent = userInfo.about;
   cards.forEach((item) => {
@@ -65,15 +28,13 @@ api.getAppInfo().then((cards, userInfo) => {
 .catch((err) => {
     console.error(err);
   })
-/*editProfileBtn.addEventListener("click", function () {
-  editProfileNameInput.valueprofileNameEl.textContent;
-  editProfileDescriptionInput.value = profileDescriptionEl.textContent;
-  openModal(editProfileModal);
-  const editProfileInputs = Array.from(
-    editProfileForm.querySelectorAll(".modal__input"),
-    profileNameEl
-    profileDescriptionEl
-  );*/
+
+const avatarModal = document.querySelector("#avatar-modal");
+const avatarForm = avatarModal.querySelector(".modal__form");
+const avatarFormSubmit = avatarModal.querySelector(".modal__submit-btn");
+const avatarCloseBtn = avatarModal.querySelector(".modal__close-btn");
+const avatarInput = avatarModal.querySelector("#profile-avatar-input",);
+
 
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
@@ -187,8 +148,16 @@ newPostCloseBtn.addEventListener("click", function () {
   closeModal(newPostModal);
 });
 
+avatarModalBtn.addEventListener("click", function () {
+  openModal(avatarModal);
+});
+
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
+  api.editUserInfo({name: editProfileNameInput.value, about: editProfileDescriptionInput.value})
+  .then((data) => {})
+  .catch(console.error);
+
   profileNameEl.textContent = editProfileNameInput.value;
   profileDescriptionEl.textContent = editProfileDescriptionInput.value;
   closeModal(editProfileModal);

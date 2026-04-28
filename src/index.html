@@ -18,18 +18,27 @@
       <!--EXTERMINATE!-->
       <header class="header">
         <img
-          src="<%= require('./images/spots-images/logo-svg.svg') %>" 
+          src="<%= require('./images/spots-images/logo-svg.svg') %>"
           alt="White Palace logo"
           class="header__logo"
         />
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%= require('./images/spots-images/avatar.jpg') %>"            
-            alt="Bessie"
-            class="profile__avatar"
-          />
+          <div class="profile__avatar-container">
+            <button class="profile__avatar-btn">
+              <img
+                src="<%= require('./images/spots-images/Coolerpencil.svg') %>"
+                alt="Pencil icon"
+                class="profile__pencil-icon"
+              />
+            </button>
+            <img
+              src="<%= require('./images/spots-images/avatar.jpg') %>"
+              alt="Bessie"
+              class="profile__avatar"
+            />
+          </div>
           <div class="profile__column">
             <h1 class="profile__name">Bessie Coleman</h1>
             <p class="profile__description">Civil Aviator</p>
@@ -41,8 +50,11 @@
             </button>
           </div>
           <button type="button" class="profile__new-post-btn">
-            <img src="<%= require('./images/spots-images/plus.svg.svg') %>" alt="Plus icon" /> New
-            Post
+            <img
+              src="<%= require('./images/spots-images/plus.svg.svg') %>"
+              alt="Plus icon"
+            />
+            New Post
           </button>
         </section>
         <section class="cards page__section">
@@ -148,5 +160,26 @@
         <p class="modal__caption"></p>
       </div>
     </div>
+
+    <div class="modal" id="avatar-modal">
+        <div class="modal__container">
+          <button type="button" class="modal__close-btn"></button>
+          <h2 class="modal__title">Edit profile avatar</h2>
+          <form class="modal__form" novalidate>
+            <label for="profile-name-input" class="modal__label">
+              Avatar
+              <input
+                id="profile-avatar-input"
+                class="modal__input"
+                type="url"
+                placeholder="Avatar Link Here"
+                required
+              />
+              <span id="profile-avatar-input-error" class="modal__error"></span>
+            </label>
+            <button type="submit" class="modal__submit-btn">Save</button>
+          </form>
+        </div>
+      </div>
   </body>
 </html>
