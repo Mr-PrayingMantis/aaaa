@@ -17,9 +17,10 @@ const api = new Api({
   },
 }); 
 
-api.getAppInfo().then(([cards, userInfo]) => {
+api.getAppInfo().then(([cards, userInfo, avatar]) => {
     profileNameEl.textContent = userInfo.name;
     profileDescriptionEl.textContent = userInfo.about;
+    avatarInput.src = avatar.input;
   cards.forEach((item) => {
     const cardElemant = getCardElement(item);
     cardsList.append(cardElemant);
@@ -34,8 +35,7 @@ const avatarForm = avatarModal.querySelector(".modal__form");
 const avatarFormSubmit = avatarModal.querySelector(".modal__submit-btn");
 const avatarCloseBtn = avatarModal.querySelector(".modal__close-btn");
 const avatarInput = avatarModal.querySelector("#profile-avatar-input",);
-
-
+const avatarModalBtn = document.querySelector(".profile__avatar-btn");
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
@@ -150,6 +150,10 @@ newPostCloseBtn.addEventListener("click", function () {
 
 avatarModalBtn.addEventListener("click", function () {
   openModal(avatarModal);
+});
+
+avatarCloseBtn.addEventListener("click", function () {
+  closeModal(avatarModal);
 });
 
 function handleEditProfileSubmit(evt) {

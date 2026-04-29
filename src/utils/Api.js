@@ -5,7 +5,7 @@ class Api {
   }
 
   getAppInfo() {
-    return Promise.all([this.getInitialCards(), this.getUserInfo()]);
+    return Promise.all([this.getInitialCards(), this.getUserInfo(), this.editUserAvatar()]);
   }
 
   getInitialCards() {
@@ -50,14 +50,13 @@ class Api {
     });
   }
 
-  editUserAvatar({ name, about }) {
+  editUserAvatar({ avatar }) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       // Send the data in the body as a JSON string.
       body: JSON.stringify({
-        name,
-        about,
+        avatar
       }),
     }).then((res) => {
       if (res.ok) {
