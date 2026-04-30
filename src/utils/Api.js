@@ -5,7 +5,7 @@ class Api {
   }
 
   getAppInfo() {
-    return Promise.all([this.getInitialCards(), this.getUserInfo(), this.editUserAvatar()]);
+    return Promise.all([this.getInitialCards(), this.getUserInfo()]);
   }
 
   getInitialCards() {
