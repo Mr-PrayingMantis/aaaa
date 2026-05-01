@@ -17,10 +17,10 @@ const api = new Api({
   },
 }); 
 
-api.getAppInfo().then(([cards, userInfo, avatar]) => {
+api.getAppInfo().then(([cards, userInfo]) => {
     profileNameEl.textContent = userInfo.name;
     profileDescriptionEl.textContent = userInfo.about;
-    avatarInput.src = avatar.input;
+    avatarInput.src = userInfo.avatar;
   cards.forEach((item) => {
     const cardElemant = getCardElement(item);
     cardsList.append(cardElemant);
