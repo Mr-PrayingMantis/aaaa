@@ -156,6 +156,12 @@ avatarCloseBtn.addEventListener("click", function () {
   closeModal(avatarModal);
 });
 
+avatarForm.addEventListener("submit", handleEditProfileSubmit); {
+  api.editUserAvatar({avatar: userInfo.avatar});
+  
+};
+//avatarInput.src = userInfo.avatar;
+
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
   api.editUserInfo({name: editProfileNameInput.value, about: editProfileDescriptionInput.value})
