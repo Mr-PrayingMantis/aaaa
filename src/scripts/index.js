@@ -38,6 +38,8 @@ const avatarInput = avatarModal.querySelector("#profile-avatar-input",);
 const avatarModalBtn = document.querySelector(".profile__avatar-btn");
 const profileAvatarEl = document.querySelector(".profile__avatar");
 
+const deleteModal = document.querySelector("#delete-modal");
+
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
@@ -83,9 +85,7 @@ function getCardElement(data) {
   });
 
   const cardDeleteButton = cardElemant.querySelector(".card__delete-button");
-  cardDeleteButton.addEventListener("click", () => {
-    cardElemant.remove();
-  });
+  cardDeleteButton.addEventListener("click", handleDeleteCard);
   cardImageEl.addEventListener("click", () => {
     previewImageEl.src = data.link;
     previewImageEl.alt = data.name;
@@ -119,6 +119,10 @@ function openModal(modal) {
   modal.classList.add("modal_is-open");
   document.addEventListener("keydown", handleEscapeKey);
   modal.addEventListener("mousedown", handleOverlayClick);
+}
+
+function handleDeleteCard(evt) {
+  openModal(deleteModal);
 }
 
 function closeModal(modal) {
@@ -163,13 +167,15 @@ function handleAvatarSubmit(evt) {
   evt.preventDefault();
   api
     .editUserAvatar({ avatar: avatarInput.value })
-     .then((data) => {
+    .then((data) => {
       profileAvatarEl.src = data.avatar;
+      avatarModalBtn.style.backgroundImage = `url(${data.avatar})`;
       closeModal(avatarModal);
       avatarForm.reset();
     })
     .catch(console.error);
 }
+
 
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
