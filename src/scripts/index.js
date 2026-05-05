@@ -156,11 +156,19 @@ avatarCloseBtn.addEventListener("click", function () {
   closeModal(avatarModal);
 });
 
-avatarForm.addEventListener("submit", handleEditProfileSubmit); {
-  api.editUserAvatar({avatar: userInfo.avatar});
-  
-};
-//avatarInput.src = userInfo.avatar;
+avatarForm.addEventListener("submit", handleAvatarSubmit);
+
+function handleAvatarSubmit(evt) {
+  evt.preventDefault();
+  api
+    .editUserAvatar({ avatar: avatarInput.value })
+    .then((data) => {
+      avatarModalBtn.style.backgroundImage = `url(${data.avatar})`;
+      closeModal(avatarModal);
+      avatarForm.reset();
+    })
+    .catch(console.error);
+}
 
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
