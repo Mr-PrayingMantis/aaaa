@@ -17,6 +17,11 @@
   align-items: flex-end;
   justify-content: center;
   visibility: hidden; 
+  
+}
+
+.profile__avatar-container:hover .profile__avatar-btn{
+  visibility: visible;
   background-color: black;
   opacity: 0.4;
   transition: opacit
@@ -24,10 +29,6 @@
   border: none;
   color: #fcf5e5;
   cursor: pointer;
-}
-
-.profile__avatar-container:hover .profile__avatar-btn{
-  visibility: visible;
 }
 
 .profile__avatar-btn:after {

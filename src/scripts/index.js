@@ -36,6 +36,7 @@ const avatarFormSubmit = avatarModal.querySelector(".modal__submit-btn");
 const avatarCloseBtn = avatarModal.querySelector(".modal__close-btn");
 const avatarInput = avatarModal.querySelector("#profile-avatar-input",);
 const avatarModalBtn = document.querySelector(".profile__avatar-btn");
+const profileAvatarEl = document.querySelector(".profile__avatar");
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
@@ -162,8 +163,8 @@ function handleAvatarSubmit(evt) {
   evt.preventDefault();
   api
     .editUserAvatar({ avatar: avatarInput.value })
-    .then((data) => {
-      avatarModalBtn.style.backgroundImage = `url(${data.avatar})`;
+     .then((data) => {
+      profileAvatarEl.src = data.avatar;
       closeModal(avatarModal);
       avatarForm.reset();
     })
