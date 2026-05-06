@@ -21,6 +21,7 @@ api.getAppInfo().then(([cards, userInfo]) => {
     profileNameEl.textContent = userInfo.name;
     profileDescriptionEl.textContent = userInfo.about;
     avatarInput.src = userInfo.avatar;
+    
   cards.forEach((item) => {
     const cardElemant = getCardElement(item);
     cardsList.append(cardElemant);
@@ -29,6 +30,24 @@ api.getAppInfo().then(([cards, userInfo]) => {
 .catch((err) => {
     console.error(err);
   })
+
+  
+  /**function handleAddCardSubmit(evt) {
+  evt.preventDefault();
+  const cardElemant = getCardElement({
+    name: captionInput.value,
+    link: cardImageInput.value,
+    newPostFormSubmit
+    data.link;
+    data.name;
+    cardImageEl.src = data.link;
+    cardImageEl.alt = data.name;
+    cardTitleEl.textContent = data.name;
+    space here
+    cardTitleEl.textContent = data.name;
+    cardImageEl.alt = data.name
+    cardImageEl.src = cardImageInput.value;
+  }); */
 
 const avatarModal = document.querySelector("#avatar-modal");
 const avatarForm = avatarModal.querySelector(".modal__form");
@@ -169,7 +188,6 @@ function handleAvatarSubmit(evt) {
     .editUserAvatar({ avatar: avatarInput.value })
     .then((data) => {
       profileAvatarEl.src = data.avatar;
-      avatarModalBtn.style.backgroundImage = `url(${data.avatar})`;
       closeModal(avatarModal);
       avatarForm.reset();
     })

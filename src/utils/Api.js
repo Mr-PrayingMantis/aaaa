@@ -31,6 +31,24 @@ class Api {
       return Promise.reject(`Error: ${res.status}`);
     });
   }
+
+  addCards({ name, link }) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: "POST",
+      headers: this._headers,
+      // Send the data in the body as a JSON string.
+      body: JSON.stringify({
+        name,
+        link,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+        console.log("here")
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
   
   editUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {

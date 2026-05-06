@@ -167,6 +167,7 @@
 .modal__submit-btn_type_cancel{
     background-color: #FFFFFF;
     color: #000;
+    border: solid;
     border-radius: 8px;
     border-color: #000;
     
