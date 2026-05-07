@@ -41,6 +41,7 @@ const profileAvatarEl = document.querySelector(".profile__avatar");
 
 const deleteModal = document.querySelector("#delete-modal");
 const deleteForm = document.querySelector(".modal__form");
+const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn");
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
@@ -158,6 +159,10 @@ editProfileBtn.addEventListener("click", function () {
     editProfileForm.querySelectorAll(".modal__input"),
   );
   resetValidation(editProfileForm, editProfileInputs);
+});
+
+deleteModalCloseBtn.addEventListener("click", function () {
+  closeModal(deleteModal);
 });
 
 editProfileCloseBtn.addEventListener("click", function () {
