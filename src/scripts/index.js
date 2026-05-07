@@ -31,24 +31,6 @@ api.getAppInfo().then(([cards, userInfo]) => {
     console.error(err);
   })
 
-  
-  /**function handleAddCardSubmit(evt) {
-  evt.preventDefault();
-  const cardElemant = getCardElement({
-    name: captionInput.value,
-    link: cardImageInput.value,
-    newPostFormSubmit
-    data.link;
-    data.name;
-    cardImageEl.src = data.link;
-    cardImageEl.alt = data.name;
-    cardTitleEl.textContent = data.name;
-    space here
-    cardTitleEl.textContent = data.name;
-    cardImageEl.alt = data.name
-    cardImageEl.src = cardImageInput.value;
-  }); */
-
 const avatarModal = document.querySelector("#avatar-modal");
 const avatarForm = avatarModal.querySelector(".modal__form");
 const avatarFormSubmit = avatarModal.querySelector(".modal__submit-btn");
@@ -58,6 +40,7 @@ const avatarModalBtn = document.querySelector(".profile__avatar-btn");
 const profileAvatarEl = document.querySelector(".profile__avatar");
 
 const deleteModal = document.querySelector("#delete-modal");
+const deleteForm = document.querySelector(".modal__form");
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
@@ -78,6 +61,8 @@ const newPostFormSubmit = newPostModal.querySelector(".modal__submit-btn");
 
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
+
+let selectedCard, selectedCardid;
 
 const cardTemplate = document
   .querySelector("#card-template")
@@ -104,7 +89,7 @@ function getCardElement(data) {
   });
 
   const cardDeleteButton = cardElemant.querySelector(".card__delete-button");
-  cardDeleteButton.addEventListener("click", handleDeleteCard);
+  cardDeleteButton.addEventListener("click", (evt) => handleDeleteCard(cardElemant, data._id));
   cardImageEl.addEventListener("click", () => {
     previewImageEl.src = data.link;
     previewImageEl.alt = data.name;
@@ -140,7 +125,22 @@ function openModal(modal) {
   modal.addEventListener("mousedown", handleOverlayClick);
 }
 
-function handleDeleteCard(evt) {
+deleteForm.addEventListener("submit", handleDeleteSubmit);
+
+function handleDeleteSubmit(evt) {
+  evt.preventDefault();
+  api
+    .deleteCard(selectedCardid) // pass the ID the the api function
+    .then(() => {
+      // remove the card from the DOM
+      // close the modal
+    })
+    .catch(console.error);
+};
+
+function handleDeleteCard(cardElemant, cardid) {
+  selectedCard = cardElemant;
+  selectedCardid = cardid;
   openModal(deleteModal);
 }
 
@@ -209,12 +209,25 @@ function handleEditProfileSubmit(evt) {
   disableButton(editProfileSubmitBtn, config);
 }
 
+function handleAddCardSubmit(evt) {
+    evt.preventDefault();
+    api
+      .addCards({ name: captionInput.value, link: cardImageInput.value })
+      .then((cardData) => {                                               
+        cardsList.prepend(getCardElement(cardData));
+        evt.target.reset();                                               
+        disableButton(newPostFormSubmit, config);
+        closeModal(newPostModal);                                         
+      })          
+      .catch(console.error);
+  }
+
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
 const captionInput = newPostForm.querySelector("#caption-input");
 const cardImageInput = newPostForm.querySelector("#card-image-input");
 
-function handleAddCardSubmit(evt) {
+/*function handleAddCardSubmit(evt) {
   evt.preventDefault();
   const cardElemant = getCardElement({
     name: captionInput.value,
@@ -224,7 +237,7 @@ function handleAddCardSubmit(evt) {
   evt.target.reset();
   disableButton(newPostFormSubmit, config);
   closeModal(newPostModal);
-}
+}*/
 newPostForm.addEventListener("submit", handleAddCardSubmit);
 
 

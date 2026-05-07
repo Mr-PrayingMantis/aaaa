@@ -160,17 +160,26 @@
 }
 
 .modal__submit-btn_type_delete {
-  background-color: #ff6565;
-  color: #212121;
+    display: flex;
+    background-color: #ff6565;
+    color: #212121;
+    position: relative;
+    top: 21px;
+    left: 144px;
+    justify-content: space-around;
 }
 
 .modal__submit-btn_type_cancel{
+    display: flex;
     background-color: #FFFFFF;
     color: #000;
     border: solid;
     border-radius: 8px;
     border-color: #000;
-    
+    position: relative;
+    bottom: 30px;
+    left: 322px;
+    justify-content: space-around;
 }
 
 @media screen and (max-width: 480px) {
@@ -193,6 +202,19 @@
     
     .modal__submit-btn {
         max-width: none;
+    }
+
+    .modal__submit-btn_type_delete {
+        bottom: 30px;
+        left: 10px;
+        width: 156px;
+        gap: 8px;
+    }
+
+    .modal__submit-btn_type_cancel{
+        bottom: 30px;
+        left: 104px;
+        width: 156px;
     }
 }
 @media screen and (max-width: 627px) {
