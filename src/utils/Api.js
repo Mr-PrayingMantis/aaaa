@@ -97,6 +97,32 @@ class Api {
       return Promise.reject(`Error: ${res.status}`);
     });
   }
+
+  changeLike({id, isLiked}) {
+    return fetch(`${this._baseUrl}/cardId/${id}/likes`, {
+      method: isLiked ? "DELETE" :"PUT",
+      headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+        console.log("here")
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
+
+  /*deleteLike({id}) {
+    return fetch(`${this._baseUrl}/cardId/${id}/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+        console.log("here")
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }*/
   // other methods for working with the API
   
 }

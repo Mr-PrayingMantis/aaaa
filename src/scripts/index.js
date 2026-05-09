@@ -40,7 +40,7 @@ const avatarModalBtn = document.querySelector(".profile__avatar-btn");
 const profileAvatarEl = document.querySelector(".profile__avatar");
 
 const deleteModal = document.querySelector("#delete-modal");
-const deleteForm = document.querySelector(".modal__form");
+const deleteForm = deleteModal.querySelector(".modal__form");
 const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn");
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
@@ -75,21 +75,38 @@ const previewModalCloseBtn = previewModal.querySelector(".modal__close-btn");
 const previewImageEl = previewModal.querySelector(".modal__image");
 const previewCaption = previewModal.querySelector(".modal__caption");
 
+
+function handleLike(evt, id) {
+  //evt.target.classList.toggle("card__like-button_active");
+  const isLiked = classList("card__like-button_active");
+  evt.preventDefault();
+  api
+    .changeLike({id, isLiked})
+}
+/**function handleDeleteSubmit(evt) {
+  evt.preventDefault();
+  api
+    .deleteCard({ id: selectedCardid }) // pass the ID the the api function
+    .then(() => {then(() => {
+  selectedCard.remove();
+  closeModal(deleteModal);
+})
+    })
+    .catch(console.error);
+}; */
 function getCardElement(data) {
   const cardElemant = cardTemplate.cloneNode(true);
   const cardTitleEl = cardElemant.querySelector(".card__title");
   const cardImageEl = cardElemant.querySelector(".card__image");
+  const cardLikeButton = cardElemant.querySelector(".card__like-button");
+  const cardDeleteButton = cardElemant.querySelector(".card__delete-button");
 
   cardImageEl.src = data.link;
   cardImageEl.alt = data.name;
   cardTitleEl.textContent = data.name;
-
-  const cardLikeButton = cardElemant.querySelector(".card__like-button");
-  cardLikeButton.addEventListener("click", () => {
-    cardLikeButton.classList.toggle("card__like-button_active");
-  });
-
-  const cardDeleteButton = cardElemant.querySelector(".card__delete-button");
+  
+  cardLikeButton.addEventListener("click", (evt) => handleLike(evt, data._id));
+  
   cardDeleteButton.addEventListener("click", (evt) => handleDeleteCard(cardElemant, data._id));
   cardImageEl.addEventListener("click", () => {
     previewImageEl.src = data.link;
@@ -131,10 +148,11 @@ deleteForm.addEventListener("submit", handleDeleteSubmit);
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
   api
-    .deleteCard(selectedCardid) // pass the ID the the api function
-    .then(() => {
-      // remove the card from the DOM
-      // close the modal
+    .deleteCard({ id: selectedCardid }) // pass the ID the the api function
+    .then(() => {then(() => {
+  selectedCard.remove();
+  closeModal(deleteModal);
+})
     })
     .catch(console.error);
 };
