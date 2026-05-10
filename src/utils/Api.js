@@ -99,7 +99,7 @@ class Api {
   }
 
   changeLike({id, isLiked}) {
-    return fetch(`${this._baseUrl}/cardId/${id}/likes`, {
+    return fetch(`${this._baseUrl}/cards/${cardID}/likes`, {
       method: isLiked ? "DELETE" :"PUT",
       headers: this._headers,
     }).then((res) => {
@@ -111,7 +111,7 @@ class Api {
     });
   }
 
-  /*deleteLike({id}) {
+  /*deleteLike({id}) {`${this._baseUrl}/cards/${cardID}/likes`
     return fetch(`${this._baseUrl}/cardId/${id}/likes`, {
       method: "DELETE",
       headers: this._headers,
