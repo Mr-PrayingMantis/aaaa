@@ -158,12 +158,11 @@ deleteForm.addEventListener("submit", handleDeleteSubmit);
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
   api
-    .deleteCard({ id: selectedCardid }) // pass the ID the the api function
-    .then(() => {then(() => {
+    .deleteCard({ id: selectedCardid })
+    .then(() => {
   selectedCard.remove();
   closeModal(deleteModal);
 })
-    })
     .catch(console.error);
 };
 
@@ -216,7 +215,7 @@ avatarCloseBtn.addEventListener("click", function () {
 avatarForm.addEventListener("submit", handleAvatarSubmit);
 
 function handleAvatarSubmit(evt) {
-  evt.preventDefault();
+  evt.preventDefault();  
   api
     .editUserAvatar({ avatar: avatarInput.value })
     .then((data) => {
@@ -230,15 +229,24 @@ function handleAvatarSubmit(evt) {
 
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
-  api.editUserInfo({name: editProfileNameInput.value, about: editProfileDescriptionInput.value})
-  .then((data) => {})
-  .catch(console.error);
 
-  profileNameEl.textContent = editProfileNameInput.value;
-  profileDescriptionEl.textContent = editProfileDescriptionInput.value;
-  closeModal(editProfileModal);
-  const editProfileSubmitBtn =
-    editProfileForm.querySelector(".modal__submit-btn");
+  const submitBtn = evt.submttier;
+  submitBtn.textContent = "Saving...";
+
+  api.editUserInfo({name: editProfileNameInput.value, about: editProfileDescriptionInput.value})
+  .then((data) => {
+    profileNameEl.textContent = editProfileNameInput.value;
+    profileDescriptionEl.textContent = editProfileDescriptionInput.value;
+    closeModal(editProfileModal);
+  })
+  .catch(console.error)
+    
+    .finally(() => {
+      submitBtn.textContent = "Save";
+    });
+
+  
+  const editProfileSubmitBtn = editProfileForm.querySelector(".modal__submit-btn");
   disableButton(editProfileSubmitBtn, config);
 }
 

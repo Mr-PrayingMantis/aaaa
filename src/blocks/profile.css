@@ -129,6 +129,7 @@
     margin: -12px 20px ;
     opacity: 1;
     background-color: transparent;
+    border: none;
   }
 
   .profile__avatar-btn:after{
