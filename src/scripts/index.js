@@ -77,23 +77,33 @@ const previewCaption = previewModal.querySelector(".modal__caption");
 
 
 function handleLike(evt, id) {
+  const isLiked = evt.target.classList.contains("card__like-button_active");
+  api
+    .changeLike(id, isLiked)
+    .then(() => {
+      evt.target.classList.toggle("card__like-button_active");
+    })
+    .catch(console.error);
+}
+/**function handleLike(evt, data) {
+  const isLiked = evt.target.classList.contains("card__like-button_active");
+  api
+    .changeLike(data._id, isLiked)
+    .then(() => {
+      evt.target.classList.toggle("card__like-button_active");
+    })
+    .catch(console.error);
+}
+
+function handleLike(evt, id) {
   //evt.target.classList.toggle("card__like-button_active");
   const isLiked = classList("card__like-button_active");
   evt.preventDefault();
   api
     .changeLike({id, isLiked})
 }
-/**function handleDeleteSubmit(evt) {
-  evt.preventDefault();
-  api
-    .deleteCard({ id: selectedCardid }) // pass the ID the the api function
-    .then(() => {then(() => {
-  selectedCard.remove();
-  closeModal(deleteModal);
-})
-    })
-    .catch(console.error);
-}; */
+
+*/
 function getCardElement(data) {
   const cardElemant = cardTemplate.cloneNode(true);
   const cardTitleEl = cardElemant.querySelector(".card__title");
