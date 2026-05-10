@@ -6,6 +6,7 @@ import {
   resetValidation,
   disableButton,
 } from "./validation.js";
+import { setButtonText } from "../utils/helpers.js"
 import Api from "../utils/Api.js"
 
 
@@ -157,13 +158,21 @@ deleteForm.addEventListener("submit", handleDeleteSubmit);
 
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
+
+  const submitBtn = evt.submitter;
+  setButtonText(submitBtn, true, "Deleting...", "Delete");
+
   api
     .deleteCard({ id: selectedCardid })
     .then(() => {
   selectedCard.remove();
   closeModal(deleteModal);
 })
-    .catch(console.error);
+    .catch(console.error)
+
+    .finally(() => {
+      setButtonText(submitBtn, false, "Deleting...", "Delete" )
+    });
 };
 
 function handleDeleteCard(cardElemant, cardid) {
@@ -216,6 +225,8 @@ avatarForm.addEventListener("submit", handleAvatarSubmit);
 
 function handleAvatarSubmit(evt) {
   evt.preventDefault();  
+  const submitBtn = evt.submitter;
+  setButtonText(submitBtn, true);
   api
     .editUserAvatar({ avatar: avatarInput.value })
     .then((data) => {
@@ -223,15 +234,20 @@ function handleAvatarSubmit(evt) {
       closeModal(avatarModal);
       avatarForm.reset();
     })
-    .catch(console.error);
+    .catch(console.error)
+
+    .finally(() => {
+      setButtonText(submitBtn, false);
+    });
 }
 
 
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
 
-  const submitBtn = evt.submttier;
-  submitBtn.textContent = "Saving...";
+  const submitBtn = evt.submitter;
+  setButtonText(submitBtn, true);
+
 
   api.editUserInfo({name: editProfileNameInput.value, about: editProfileDescriptionInput.value})
   .then((data) => {
@@ -242,7 +258,7 @@ function handleEditProfileSubmit(evt) {
   .catch(console.error)
     
     .finally(() => {
-      submitBtn.textContent = "Save";
+      setButtonText(submitBtn, false);
     });
 
   
