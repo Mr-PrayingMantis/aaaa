@@ -8,10 +8,11 @@ a image sharing site named the White Palace
 - Responsive Design
 
 ## Deployment link
-[https://github.com/Mr-PrayingMantis/aaaa]
+[https://github.com/Mr-PrayingMantis/aaaa](https://github.com/Mr-PrayingMantis/aaaa)
+
 ## Project Pitch Video
 
-[https://drive.google.com/file/d/17nTkfAqkyIdUoI79RLGwo8kB1_9w-Hz_/view?usp=sharing]
+https://drive.google.com/file/d/17nTkfAqkyIdUoI79RLGwo8kB1_9w-Hz_/view?usp=sharing
 <!--### Overview  
 
 * Intro  

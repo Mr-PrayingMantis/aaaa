@@ -153,7 +153,7 @@ function openModal(modal) {
   document.addEventListener("keydown", handleEscapeKey);
   modal.addEventListener("mousedown", handleOverlayClick);
 }
-//
+
 deleteForm.addEventListener("submit", handleDeleteSubmit);
 
 function handleDeleteSubmit(evt) {
