@@ -3,6 +3,12 @@ class Api {
     this._baseUrl = options.baseUrl;
     this._headers = options.headers;
   }
+  
+  _checkResponse() {
+    if (res.ok) {
+        return res.json();
+      }
+  }
 
   getAppInfo() {
     return Promise.all([this.getInitialCards(), this.getUserInfo()]);

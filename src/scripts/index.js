@@ -43,6 +43,7 @@ const profileAvatarEl = document.querySelector(".profile__avatar");
 const deleteModal = document.querySelector("#delete-modal");
 const deleteForm = deleteModal.querySelector(".modal__form");
 const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn");
+const deleteModalCancel = deleteModal.querySelector(".modal__submit-btn_type_cancel");
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
@@ -201,6 +202,10 @@ deleteModalCloseBtn.addEventListener("click", function () {
   closeModal(deleteModal);
 });
 
+deleteModalCancel.addEventListener("click", function () {
+  closeModal(deleteModal);
+});
+
 editProfileCloseBtn.addEventListener("click", function () {
   closeModal(editProfileModal);
 });
@@ -268,6 +273,10 @@ function handleEditProfileSubmit(evt) {
 
 function handleAddCardSubmit(evt) {
     evt.preventDefault();
+
+    const submitBtn = evt.submitter;
+  setButtonText(submitBtn, true);
+
     api
       .addCards({ name: captionInput.value, link: cardImageInput.value })
       .then((cardData) => {                                               
@@ -276,9 +285,23 @@ function handleAddCardSubmit(evt) {
         disableButton(newPostFormSubmit, config);
         closeModal(newPostModal);                                         
       })          
-      .catch(console.error);
-  }
+      .catch(console.error)
 
+       .finally(() => {
+      setButtonText(submitBtn, false);
+    });
+  }
+/**api
+    .deleteCard({ id: selectedCardid })
+    .then(() => {
+  selectedCard.remove();
+  closeModal(deleteModal);
+})
+    .catch(console.error)
+
+    .finally(() => {
+      setButtonText(submitBtn, false, "Deleting...", "Delete" )
+    }); */
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
 const captionInput = newPostForm.querySelector("#caption-input");
